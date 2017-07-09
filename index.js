@@ -2,7 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);		//initialize a new instance of socket.io by passing the http (the HTTP server) object
 var HashMap = require('hashmap');		//import class hashmap
-var dl  = require('delivery');				//import delivery (used for file transfer)
+//var dl  = require('delivery');				//import delivery (used for file transfer)
 var fs  = require('fs');					//import filestream
 
 var usersocketmap = new HashMap();
@@ -12,8 +12,8 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
 });
 
-http.listen(3000, function(){
-	console.log('listening on *:3000');
+http.listen(3002, function(){
+	console.log('listening on *:3002');
 });
 
 
@@ -45,7 +45,8 @@ io.on('connection', function(socket){		//on connection, create a new 'socket' in
 		toSocket.emit('send private chat',fromId,fromName, toId,toName,msg);
 	});
 	
-	var delivery = dl.listen(socket);
+	//send file called
+	/*var delivery = dl.listen(socket);
 	delivery.on('receive.success',function(file){
 	console.log('receive.success called');
     var params = file.params;
@@ -56,7 +57,7 @@ io.on('connection', function(socket){		//on connection, create a new 'socket' in
         console.log('File saved.');
       };
     });
-  });
+  });*/
 	
 	socket.on('disconnect', function () {
 		//console.log('disconnected '+usersocketmap.get(socket));

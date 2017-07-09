@@ -94,11 +94,11 @@
 			
 		</style>
 		
-		<script src="/js/delivery.js"></script>
+		<!--script src="/js/delivery.js"></script>
 		<script src="./node_modules/delivery/lib/client/delivery.js"></script>
 		<script src="C:\Data\Deep_UF\SideProjects\MEAN\SocketIO\node_modules\delivery\lib\client\delivery.js"></script>
 		<script src="C:/Data/Deep_UF/SideProjects/MEAN/SocketIO/node_modules/delivery/lib/client/delivery.js"></script>
-		<script></script>
+		<script></script-->
 		
 		
 	</head>
@@ -116,7 +116,9 @@
 		</div>
 		
 		<form action="" id="msgbox">
-			<input type="file" id="broadcastfile"><input id="m" autocomplete="off" type="text" /><button>Send</button>
+			<!--input type="file" id="broadcastfile"/-->
+			<input id="m" autocomplete="off" type="text" />
+			<button>Send</button>
 		</form>
 		
 		<div id="userslistdiv" class="chat-sidebar">
@@ -128,14 +130,14 @@
 		
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-		<script src="/js/delivery.js"></script>
+		<!--script src="/js/delivery.js"></script>
 		<script src="./node_modules/delivery/lib/client/delivery.js"></script>
 		<script src="C:\Data\Deep_UF\SideProjects\MEAN\SocketIO\node_modules\delivery\lib\client\delivery.js"></script>
-		<script src="C:/Data/Deep_UF/SideProjects/MEAN/SocketIO/node_modules/delivery/lib/client/delivery.js"></script>
+		<script src="C:/Data/Deep_UF/SideProjects/MEAN/SocketIO/node_modules/delivery/lib/client/delivery.js"></script-->
 		<script>
 			var userconnected = false;
 			var socket = io();
-			var delivery = new Delivery(socket);
+			//var delivery = new Delivery(socket);		//file send code
 			var unamevar;
 			
 			$(function(){			//on page load
@@ -162,16 +164,14 @@
 				socket.emit('chat message', $('#m').val());
 				$('#m').val('');		//make textbox null on send
 				
-				var file = $("input[type=file]")[0].files[0];		//file sending code
+				//var file = $("input[type=file]")[0].files[0];		//file sending code
 				var extraParams = {foo: 'bar'};
-				delivery.send(file, extraParams);
+				//delivery.send(file, extraParams);		//file send code
 				
 				return false;
 			});
 			
-			delivery.on('send.success',function(fileUID){
-				console.log("file was successfully sent.");
-			});
+			//delivery.on('send.success',function(fileUID){console.log("file was successfully sent.");});	//file send code
 			
 			socket.on('chat message', function(msg){		//chat msg received
 				if(userconnected){
